@@ -1,75 +1,159 @@
-# React + TypeScript + Vite
+# ✅ ToDo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Maintainability](https://api.codeclimate.com/v1/badges/REPLACE_WITH_YOUR_TOKEN/maintainability)](https://codeclimate.com/github/REPLACE_WITH_YOUR_USERNAME/REPLACE_WITH_YOUR_REPO/maintainability)
 
-Currently, two official plugins are available:
+Полнофункциональное веб-приложение для управления списком задач, реализованное по спецификации [TodoMVC](https://todomvc.com). Построено по архитектуре клиент-сервер с хранением данных в PostgreSQL.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Демонстрация
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+> Ссылка на деплой: [REPLACE_WITH_DEPLOY_URL]
 
-## Expanding the ESLint configuration
+![demo](REPLACE_WITH_GIF_URL)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠 Стек технологий
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Frontend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- [React 19](https://react.dev/) — UI-библиотека
+- [TypeScript](https://www.typescriptlang.org/) — типизация
+- [Vite 8](https://vitejs.dev/) — сборщик и dev-сервер
 
+### Backend
+
+- [Node.js](https://nodejs.org/) — среда выполнения
+- [Express 4](https://expressjs.com/) — веб-фреймворк
+- [TypeScript](https://www.typescriptlang.org/) — типизация
+- [ts-node-dev](https://github.com/wclr/ts-node-dev) — hot-reload в разработке
+
+### База данных
+
+- [PostgreSQL](https://www.postgresql.org/) — реляционная СУБД
+- [Prisma 7](https://www.prisma.io/) — ORM
+
+---
+
+## ⚙️ Функциональность
+
+- ➕ Создание задачи (поле ввода + Enter)
+- ✅ Отметка задачи как выполненной / снятие отметки
+- ✏️ Редактирование текста задачи (двойной клик → Enter / Escape)
+- 🗑️ Удаление задачи (кнопка ×)
+- 🔁 Массовое переключение всех задач (Toggle All)
+- 🧹 Удаление всех выполненных задач (Clear Completed)
+- 🔍 Фильтрация: **All** / **Active** / **Completed**
+- 🔢 Счётчик оставшихся задач
+
+---
+
+## 📦 Установка и запуск
+
+### Требования
+
+- Node.js >= 18
+- PostgreSQL >= 14
+- npm >= 9
+
+### 1. Клонировать репозиторий
+
+```bash
+git clone https://github.com/REPLACE_WITH_YOUR_USERNAME/REPLACE_WITH_YOUR_REPO.git
+cd REPLACE_WITH_YOUR_REPO
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Установить зависимости фронтенда
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Установить зависимости бэкенда
+
+```bash
+cd server
+npm install
+```
+
+### 4. Настроить переменные окружения
+
+Создай файл `server/.env` (или отредактируй существующий):
+
+```env
+DATABASE_URL="postgresql://postgres:YOUR_PASSWORD@localhost:5432/todoapp"
+PORT=3001
+```
+
+> Замени `YOUR_PASSWORD` на пароль своего PostgreSQL.  
+> База данных `todoapp` должна существовать:
+>
+> ```sql
+> CREATE DATABASE todoapp;
+> ```
+
+### 5. Применить схему базы данных
+
+```bash
+# из папки server/
+npx prisma db push
+```
+
+### 6. Запустить проект
+
+```bash
+# из корневой папки — запускает фронтенд и бэкенд одновременно
+cd ..
+npm start
+```
+
+| Сервис     | URL                             |
+| ---------- | ------------------------------- |
+| Фронтенд   | http://localhost:5173           |
+| Бэкенд API | http://localhost:3001/api/todos |
+
+---
+
+## 🗂 Структура проекта
 
 ```
+├── src/                        # React-приложение
+│   ├── components/
+│   │   ├── TodoApp.tsx         # Главный компонент (state + handlers)
+│   │   ├── TodoHeader.tsx      # Поле ввода новой задачи
+│   │   ├── TodoMain.tsx        # Список задач + toggle-all
+│   │   ├── TodoItem.tsx        # Элемент списка (toggle, edit, delete)
+│   │   └── TodoFooter.tsx      # Фильтры, счётчик, clear completed
+│   ├── api.ts                  # Все fetch-запросы к API
+│   └── types.ts                # Интерфейс Todo, тип Filter
+├── server/
+│   ├── src/
+│   │   └── index.ts            # Express-сервер, все эндпоинты
+│   ├── prisma/
+│   │   └── schema.prisma       # Схема БД (модель Todo)
+│   ├── prisma.config.ts        # Конфигурация Prisma 7
+│   ├── .env                    # Переменные окружения (не коммитить!)
+│   └── package.json
+├── vite.config.ts              # Vite + прокси /api → :3001
+└── package.json
+```
+
+---
+
+## 🔌 API
+
+| Метод    | URL                     | Описание                            |
+| -------- | ----------------------- | ----------------------------------- |
+| `GET`    | `/api/todos`            | Получить все задачи                 |
+| `POST`   | `/api/todos`            | Создать задачу `{ title }`          |
+| `PATCH`  | `/api/todos/toggle-all` | Переключить все `{ done }`          |
+| `PATCH`  | `/api/todos/:id`        | Обновить задачу `{ title?, done? }` |
+| `DELETE` | `/api/todos/completed`  | Удалить все выполненные             |
+| `DELETE` | `/api/todos/:id`        | Удалить задачу по id                |
+
+---
+
+## 📝 Лицензия
+
+MIT
