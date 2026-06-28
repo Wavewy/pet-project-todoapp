@@ -8,9 +8,9 @@
 
 ## 🚀 Демонстрация
 
-> Ссылка на деплой: [(https://project-a7fd6e1f-2feb-4733-9da.lm.r.appspot.com/)]
+> Ссылка на деплой: (https://project-a7fd6e1f-2feb-4733-9da.lm.r.appspot.com/)
 
-![demo](https://project-a7fd6e1f-2feb-4733-9da.lm.r.appspot.com/)
+![demo](https://wavewy.s-ul.eu/6A9o7AWr)
 
 ---
 
