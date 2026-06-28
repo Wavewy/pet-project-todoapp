@@ -8,9 +8,9 @@
 
 ## 🚀 Демонстрация
 
-> Ссылка на деплой: [REPLACE_WITH_DEPLOY_URL]
+> Ссылка на деплой: [(https://project-a7fd6e1f-2feb-4733-9da.lm.r.appspot.com/)]
 
-![demo](REPLACE_WITH_GIF_URL)
+![demo](https://project-a7fd6e1f-2feb-4733-9da.lm.r.appspot.com/)
 
 ---
 
